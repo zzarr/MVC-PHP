@@ -31,4 +31,26 @@ class bookController
         $data .= "</table>";
         include_once('bookViev.php');
     }
+
+    function invokeDB()
+    {
+        $model_data = new BookModel();
+        $row_data = $model_data->getDataDB();
+        $no = 1;
+        $data = "<table border='1'>
+        <tr>	<th>No</th><th>Judul</th><th>Pengarang</th><th>Penerbit</th><th>Tahun</th>
+        </tr>";
+        while ($row = mysqli_fetch_object($row_data)) {
+            $data .= "<tr>
+        <td>$no</td>
+        <td>" . $row->judul . "</td>
+        <td>" . $row->pengarang . "</td>
+        <td>" . $row->penerbit . "</td>
+        <td>" . $row->tahun . "</td>
+        </tr>";
+            $no++;
+        }
+        $data .= "</table>";
+        include('bookviev.php');
+    }
 }

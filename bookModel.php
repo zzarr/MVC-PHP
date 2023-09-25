@@ -13,4 +13,12 @@ class bookModel
             new Book('One Piece', 'Eichiro Oda', 'Shounen Jump', '1999'),
         );
     }
+
+    public function getDataDB()
+    {
+        include_once('koneksi.php');
+        $query = "SELECT * FROM book";
+        $result = mysqli_query($koneksi, $query);
+        return $result;
+    }
 }
